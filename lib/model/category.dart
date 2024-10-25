@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
-enum Categories {
-  travel,
-  entertainment,
-  food,
-  utility,
-  subscription,
-  tech,
-  other
-}
+const uuid = Uuid();
+
+const categoryIcons = [
+  'food2',
+  'travel',
+  'entertainment',
+  'shopping',
+  'investment',
+  'salary',
+  'subscription',
+  'skincare',
+  'transportation',
+  'health',
+  'sport',
+  'furniture',
+  'others',
+  'game',
+  'building',
+  'food',
+  'education',
+];
 
 class Category {
-  // positional arguments
-  const Category(
+  Category({
     this.title,
-    this.image,
-  );
+    required this.icon,
+  }) : id = uuid.v4();
 
-  final String title;
-  final Image image;
+  final String id;
+  final String? title;
+  final Widget icon;
 }
+
+// final String id;
+  // final String title;
+ // final String icon;
+ // int totalExpenses;
+ // int totalIncome;

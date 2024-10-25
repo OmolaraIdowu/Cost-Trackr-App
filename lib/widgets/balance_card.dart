@@ -1,124 +1,133 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
-class BalanceCard extends StatelessWidget {
+class BalanceCard extends StatefulWidget {
   const BalanceCard({super.key});
 
-  // Helper function to format large numbers
-  String _formatCurrency(double amount) {
-    return NumberFormat.currency(symbol: 'N ', decimalDigits: 0).format(amount);
+  @override
+  State<BalanceCard> createState() => _BalanceCardState();
+}
+
+class _BalanceCardState extends State<BalanceCard> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  String formatCurrency(double amount) {
+    return NumberFormat.currency(symbol: '\$ ', decimalDigits: 0)
+        .format(amount);
   }
+
+  final double _totalBalance = 2000000000.0;
+  final double _income = 100000.0;
+  final double _expenses = 500000.0;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset('assets/images/card_bg.png'),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.width / 2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            // boxShadow: const [
+            //   BoxShadow(
+            //     blurRadius: 4,
+            //     color: Color(0xFF5196FF),
+            //   ),
+            // ],
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xFF005CE7),
+                Color(0xFF053A89),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(24),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Period Balance',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: Colors.white),
-                  ),
-                  Text(
-                    'Current Balance',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: Colors.white),
-                  ),
-                ],
+              Text(
+                'Total Balance',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .copyWith(color: Colors.white),
               ),
               const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        _formatCurrency(1000000),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(fontSize: 24, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        _formatCurrency(2000000),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(fontSize: 24, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                formatCurrency(_totalBalance - _expenses + _income),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineLarge!
+                    .copyWith(fontSize: 40, color: Colors.white),
               ),
               const SizedBox(height: 36),
               Row(
-                children: [
-                  Text(
-                    'Income',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: Colors.white),
-                  ),
-                  const SizedBox(width: 8),
-                  SvgPicture.asset('assets/icons/arrow_down.svg'),
-                  const Spacer(),
-                  Text('Expenses',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(color: Colors.white)),
-                  const SizedBox(width: 8),
-                  SvgPicture.asset('assets/icons/arrow_up.svg'),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        _formatCurrency(100000000),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 16, color: Colors.white),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/arrow_down.svg',
+                        height: 24,
+                        width: 24,
                       ),
-                    ),
+                      const SizedBox(width: 8),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Income',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(color: Colors.white),
+                          ),
+                          Text(
+                            formatCurrency(_income),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  const Spacer(),
-                  Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        '- ${_formatCurrency(50000000)}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 16, color: Colors.white),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/arrow_up.svg',
+                        height: 24,
+                        width: 24,
                       ),
-                    ),
+                      const SizedBox(width: 8),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Expenses',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(color: Colors.white),
+                          ),
+                          Text(
+                            '- ${formatCurrency(_expenses)}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

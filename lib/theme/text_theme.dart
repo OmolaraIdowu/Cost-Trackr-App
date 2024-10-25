@@ -4,48 +4,118 @@ class AppTextTheme {
   AppTextTheme._();
 
   static TextTheme lightTextTheme = const TextTheme(
-    titleSmall: TextStyle(
+    headlineLarge: TextStyle(
         fontFamily: 'Poppins',
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.bold,
+        fontSize: 30,
+        color: Colors.black),
+    headlineMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold,
+        fontSize: 18,
+        color: Colors.black),
+    headlineSmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w600,
         fontSize: 14,
+        color: Color(0xFF005CE7)),
+    titleLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
         color: Colors.black),
     titleMedium: TextStyle(
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w500,
         fontSize: 14,
         color: Colors.black),
-    titleLarge: TextStyle(
+    titleSmall: TextStyle(
         fontFamily: 'Poppins',
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
+        color: Colors.black),
+    bodyLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.normal,
         fontSize: 16,
         color: Colors.black),
-    headlineMedium: TextStyle(
+    bodyMedium: TextStyle(
         fontFamily: 'Poppins',
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.normal,
+        fontSize: 12,
+        color: Colors.black),
+    bodySmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.normal,
+        fontSize: 10,
+        color: Colors.black),
+    labelLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+        color: Colors.black),
+    labelMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
         fontSize: 14,
-        color: Color(0xFF005CE7)),
+        color: Colors.black),
   );
 
   static TextTheme darkTextTheme = const TextTheme(
-    titleSmall: TextStyle(
+    headlineLarge: TextStyle(
         fontFamily: 'Poppins',
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.bold,
+        fontSize: 30,
+        color: Colors.white),
+    headlineMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold,
+        fontSize: 18,
+        color: Colors.white),
+    headlineSmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w600,
         fontSize: 14,
+        color: Color(0xFF005CE7)),
+    titleLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
         color: Colors.white),
     titleMedium: TextStyle(
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w500,
         fontSize: 14,
         color: Colors.white),
-    titleLarge: TextStyle(
+    titleSmall: TextStyle(
         fontFamily: 'Poppins',
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
+        color: Colors.white),
+    bodyLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.normal,
         fontSize: 16,
         color: Colors.white),
-    headlineMedium: TextStyle(
+    bodyMedium: TextStyle(
         fontFamily: 'Poppins',
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.normal,
+        fontSize: 12,
+        color: Colors.white),
+    bodySmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.normal,
+        fontSize: 10,
+        color: Colors.white),
+    labelLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+        color: Colors.white),
+    labelMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
         fontSize: 14,
-        color: Color(0xFF005CE7)),
+        color: Colors.white),
   );
 }

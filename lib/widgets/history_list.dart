@@ -1,4 +1,4 @@
-import 'package:cost_trackr/model/expense.dart';
+import 'package:cost_trackr/model/transaction.dart';
 import 'package:flutter/material.dart';
 
 class HistoryList extends StatefulWidget {
@@ -9,11 +9,11 @@ class HistoryList extends StatefulWidget {
 }
 
 class _HistoryListState extends State<HistoryList> {
-  final List<Expense> _expenses = [];
+  final List<Transaction> _transaction = [];
 
   @override
   Widget build(BuildContext context) {
-    if (_expenses.isEmpty) {
+    if (_transaction.isEmpty) {
       return Center(
         child: Text(
           'No expenses added yet.',
@@ -23,9 +23,10 @@ class _HistoryListState extends State<HistoryList> {
     }
 
     return ListView.builder(
-      itemCount: _expenses.length,
+      itemCount: _transaction.length,
       itemBuilder: (ctx, index) => ListTile(
-          title: Text(_expenses[index].name,
+          // leading: _transaction[index].category.icon,
+          title: Text(_transaction[index].description,
               style: Theme.of(context).textTheme.titleMedium),
           onTap: () {}),
     );
